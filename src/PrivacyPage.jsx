@@ -1,51 +1,41 @@
 import { Brand } from './components/Brand.jsx'
 import { neuralGraphContact } from './neuralgraph-config.js'
+import { currentLanguage, languagePaths } from './neuralgraph-i18n.js'
+import { privacyCopy } from './privacy-i18n.js'
 
 export function PrivacyPage() {
+  const language = currentLanguage()
+  const copy = privacyCopy[language]
+
   return (
     <main className="privacy-page">
       <div className="privacy-container">
         <Brand href="/" />
-        <p className="privacy-label">Información legal</p>
-        <h1>Política de privacidad</h1>
-        <p className="privacy-updated">Última actualización: 5 de agosto de 2026</p>
+        <p className="privacy-label">{copy.label}</p>
+        <h1>{copy.title}</h1>
+        <p className="privacy-updated">{copy.updated}</p>
 
-        <h2>Responsable del tratamiento</h2>
+        <h2>{copy.responsibleTitle}</h2>
         <p>
-          Alberto Cortinas, persona física que opera bajo el nombre comercial Coral Data Lab,
-          es responsable del tratamiento de los datos recogidos mediante esta web y la
-          investigación de NeuralGraph. Coral Data Lab no es una sociedad mercantil.
-          Contacto: <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
+          {copy.responsible} {copy.contact}: <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
         </p>
 
-        <h2>Datos y finalidad</h2>
+        <h2>{copy.dataTitle}</h2>
+        <p>{copy.data}</p>
+
+        <h2>{copy.legalTitle}</h2>
+        <p>{copy.legal}</p>
+
+        <h2>{copy.providersTitle}</h2>
+        <p>{copy.providers}</p>
+
+        <h2>{copy.rightsTitle}</h2>
         <p>
-          Si participas en la investigación, trataremos las respuestas que facilites y,
-          cuando corresponda, tus datos profesionales y de contacto para estudiar necesidades
-          relacionadas con RAG y GraphRAG y para organizar entrevistas de investigación.
+          {copy.rightsBefore} <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
+          {' '}{copy.rightsAfter}
         </p>
 
-        <h2>Base jurídica y conservación</h2>
-        <p>
-          El tratamiento se basa en tu consentimiento. Conservaremos la información durante
-          el tiempo necesario para esta investigación o hasta que retires el consentimiento.
-        </p>
-
-        <h2>Proveedores y transferencias</h2>
-        <p>
-          El formulario puede ser gestionado mediante Typeform como proveedor tecnológico.
-          Antes de responder podrás consultar sus condiciones y la información aplicable al
-          tratamiento y a posibles transferencias internacionales.
-        </p>
-
-        <h2>Tus derechos</h2>
-        <p>
-          Puedes solicitar acceso, rectificación, supresión, limitación, oposición o portabilidad,
-          y retirar tu consentimiento escribiendo a <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
-          También puedes reclamar ante la autoridad de protección de datos competente.
-        </p>
-
-        <a className="privacy-back" href="/neuralgraph/">← Volver a NeuralGraph</a>
+        <a className="privacy-back" href={languagePaths[language]}>{copy.back}</a>
       </div>
     </main>
   )

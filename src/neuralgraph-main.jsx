@@ -4,7 +4,9 @@ import { NeuralGraphPage, NeuralGraphThanksPage } from './NeuralGraphPage.jsx'
 import '../tokens.css'
 import '../neuralgraph.css'
 
-const isThanksPage = window.location.pathname.replace(/\/$/, '').endsWith('/gracias')
+const isThanksPage = /\/(gracias|gracies|thanks)$/.test(
+  window.location.pathname.replace(/\/$/, ''),
+)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
