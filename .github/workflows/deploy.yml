@@ -1,0 +1,103 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: Build and validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production assets
+        run: npm run build
+
+      - name: Build production container
+        run: |
+          docker build \
+            --build-arg BUILD_REVISION=${{ github.sha }} \
+            --tag coraldatalab-web:${{ github.sha }} \
+            .
+
+  deploy:
+    name: Deploy to production
+    needs: ci
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: coraldatalab-production
+      cancel-in-progress: false
+    environment:
+      name: production
+      url: https://coraldatalab.com
+
+    steps:
+      - name: Configure deployment SSH key
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          set -Eeuo pipefail
+          : "${DEPLOY_SSH_KEY:?Missing DEPLOY_SSH_KEY secret}"
+          : "${DEPLOY_KNOWN_HOSTS:?Missing DEPLOY_KNOWN_HOSTS secret}"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/coraldatalab_deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/coraldatalab_deploy ~/.ssh/known_hosts
+
+      - name: Deploy current main branch
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          set -Eeuo pipefail
+          : "${DEPLOY_HOST:?Missing DEPLOY_HOST secret}"
+          : "${DEPLOY_PORT:?Missing DEPLOY_PORT secret}"
+          : "${DEPLOY_USER:?Missing DEPLOY_USER secret}"
+          ssh -T \
+            -i ~/.ssh/coraldatalab_deploy \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            -o ConnectTimeout=15 \
+            -p "$DEPLOY_PORT" \
+            "$DEPLOY_USER@$DEPLOY_HOST" "deploy ${{ github.sha }}"
+
+      - name: Verify public deployment
+        env:
+          EXPECTED_REVISION: ${{ github.sha }}
+        run: |
+          set -Eeuo pipefail
+          actual_revision=$(curl \
+            --fail \
+            --show-error \
+            --silent \
+            --retry 10 \
+            --retry-all-errors \
+            --retry-delay 3 \
+            --max-time 15 \
+            https://coraldatalab.com/version.txt)
+          test "$actual_revision" = "$EXPECTED_REVISION"
+          curl --fail --show-error --silent https://coraldatalab.com/healthz

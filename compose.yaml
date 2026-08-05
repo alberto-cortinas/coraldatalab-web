@@ -1,0 +1,23 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        BUILD_REVISION: ${BUILD_REVISION:-unknown}
+    container_name: coraldatalab-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+
+  tunnel:
+    image: cloudflare/cloudflared:2026.7.3@sha256:e39ee8da81ad5e05d77f38d2f51c60ca51bf2a8450ac3abab50c17fdb91d91bf
+    container_name: coraldatalab-tunnel
+    restart: unless-stopped
+    user: "65532:989"
+    depends_on:
+      web:
+        condition: service_healthy
+    command: --no-autoupdate tunnel --config /etc/cloudflared/config.yml run
+    volumes:
+      - ./cloudflared-config.yml:/etc/cloudflared/config.yml:ro
+      - /home/alberto/.cloudflared/b9e049de-73e9-4e82-987d-cfbd19c16acf.json:/etc/cloudflared/credentials.json:ro
