@@ -9,8 +9,9 @@ export function Brand({ footer = false }) {
         <i />
         <i />
         <i />
+        <b />
       </span>
-      <span>Coral Data Lab</span>
+      <span className="brand__name">Coral Data <span>Lab</span></span>
     </a>
   )
 }

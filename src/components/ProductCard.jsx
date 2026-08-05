@@ -1,12 +1,6 @@
 import { Check, Network, PanelsTopLeft, Route } from 'lucide-react'
 import { numberLabel } from '../content.js'
 
-const motifParts = {
-  routes: 4,
-  graph: 5,
-  story: 3,
-}
-
 const productIcons = {
   routes: Route,
   graph: Network,
@@ -35,12 +29,6 @@ export function ProductCard({ product, index }) {
             <li key={feature}><Check aria-hidden="true" />{feature}</li>
           ))}
         </ul>
-      </div>
-      <div className={`product__motif motif-${product.motif}`} aria-hidden="true">
-        <small>{product.verb} · sistema activo</small>
-        {Array.from({ length: motifParts[product.motif] }, (_, part) => (
-          <span key={part} />
-        ))}
       </div>
     </article>
   )
