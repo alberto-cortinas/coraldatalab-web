@@ -19,6 +19,29 @@ export function Header() {
 
   const closeMenu = () => setMenuOpen(false)
 
+  const navigateToSection = (event) => {
+    const sectionId = event.currentTarget.hash.slice(1)
+    const section = document.getElementById(sectionId)
+
+    if (!section) return
+
+    event.preventDefault()
+    setMenuOpen(false)
+
+    if (window.location.hash !== `#${sectionId}`) {
+      window.history.pushState(null, '', `#${sectionId}`)
+    }
+
+    window.requestAnimationFrame(() => {
+      section.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth',
+        block: 'start',
+      })
+    })
+  }
+
   return (
     <header className="site-head">
       <div className="container site-head__row">
@@ -38,9 +61,9 @@ export function Header() {
           id="main-navigation"
           aria-label="Navegación principal"
         >
-          <a href="#productos" onClick={closeMenu}>Productos</a>
-          <a href="#enfoque" onClick={closeMenu}>Enfoque</a>
-          <a href="#principios" onClick={closeMenu}>Principios</a>
+          <a href="#productos" onClick={navigateToSection}>Productos</a>
+          <a href="#enfoque" onClick={navigateToSection}>Enfoque</a>
+          <a href="#principios" onClick={navigateToSection}>Principios</a>
           <a className="btn btn--ghost btn--sm" href={contactHref} onClick={closeMenu}>
             Hablemos
           </a>

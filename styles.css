@@ -1,5 +1,7 @@
 /* Coral Data Lab · landing corporativa */
 
+html{scroll-padding-top:68px}
+
 .skip{position:absolute;left:-9999px}.skip:focus{left:var(--gutter);top:var(--sp-3);z-index:30;background:var(--n-0);border:var(--border-ctrl);padding:8px 12px}
 
 .site-head{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(14px);border-bottom:var(--border)}
@@ -50,6 +52,7 @@
   .product{padding:var(--sp-6)}.principles{grid-template-columns:repeat(2,1fr)}.principles article:nth-child(2){border-right:0}.principles article:nth-child(3){padding-left:0;border-top:var(--border)}.principles article:nth-child(4){border-top:var(--border)}
 }
 @media(max-width:720px){
+  html{scroll-padding-top:60px}
   .site-head__row{min-height:60px}.menu-toggle{display:inline-flex}.nav{position:absolute;top:60px;left:0;right:0;display:none;align-items:stretch;gap:0;padding:var(--sp-4) var(--gutter) var(--sp-6);background:var(--paper);border-bottom:var(--border)}.nav--open{display:flex;flex-direction:column}.nav>a:not(.btn){display:block;padding:12px 0;border-bottom:var(--border);font-size:15px}.nav .btn{margin-top:var(--sp-4)}.hero{min-height:calc(100svh - 60px);padding-block:64px}.hero:before{background-position:62% center}.hero:after{background:linear-gradient(180deg,rgba(251,250,247,.98) 0%,rgba(251,250,247,.92) 55%,rgba(251,250,247,.48) 100%)}.contact:before{width:100%;background-size:auto 130%;opacity:.16}.contact:after{background:rgba(251,250,247,.8)}
   .proof-strip__grid{grid-template-columns:1fr}.proof-strip p,.proof-strip p:first-child{padding:14px 0;border-right:0;border-bottom:var(--border)}.proof-strip p:last-child{border-bottom:0}
   .section-head{grid-template-columns:1fr;gap:var(--sp-6);margin-bottom:var(--sp-12)}.product-list{grid-template-columns:1fr}.product{gap:var(--sp-5);padding:var(--sp-8) 0;border-right:0;border-bottom:var(--border)}.product:last-child{border-bottom:0}.product__title h3{font-size:38px}.thesis blockquote{font-size:38px;margin-bottom:var(--sp-12)}.thesis__grid{grid-template-columns:1fr;margin-left:0;gap:var(--sp-6)}
