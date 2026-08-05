@@ -47,23 +47,16 @@ function ResearchLink({ placement, className = '', children }) {
 
 function NeuralGraphMark() {
   return (
-    <div className="ng-visual" aria-hidden="true">
-      <div className="ng-visual__line ng-visual__line--1" />
-      <div className="ng-visual__line ng-visual__line--2" />
-      <div className="ng-visual__line ng-visual__line--3" />
-      <div className="ng-visual__line ng-visual__line--4" />
-      <div className="ng-visual__line ng-visual__line--5" />
-      <div className="ng-visual__line ng-visual__line--6" />
-      <i className="ng-visual__node ng-visual__node--1" />
-      <i className="ng-visual__node ng-visual__node--2" />
-      <i className="ng-visual__node ng-visual__node--3" />
-      <i className="ng-visual__node ng-visual__node--4" />
-      <i className="ng-visual__node ng-visual__node--5" />
-      <i className="ng-visual__node ng-visual__node--6" />
-      <i className="ng-visual__node ng-visual__node--7" />
-      <div className="ng-visual__scan" />
-      <span>vector · graph · provenance</span>
-    </div>
+    <figure className="ng-visual">
+      <img
+        src="/images/neuralgraph-hero.webp"
+        width="1396"
+        height="1127"
+        alt="Red orgánica de nodos interconectados en tonos violeta y azul"
+        fetchPriority="high"
+      />
+      <figcaption>vector · graph · provenance</figcaption>
+    </figure>
   )
 }
 
