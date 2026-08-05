@@ -1,8 +1,8 @@
-export function Brand({ footer = false }) {
+export function Brand({ footer = false, href = '#inicio' }) {
   return (
     <a
       className="brand"
-      href="#inicio"
+      href={href}
       aria-label={footer ? undefined : 'Coral Data Lab, inicio'}
     >
       <span className="brand__mark" aria-hidden="true" />

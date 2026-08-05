@@ -346,3 +346,16 @@ web/
 ```
 
 Para revisar la landing, abre `index.html` o sirve el directorio con cualquier servidor HTTP estático.
+
+## 15. Landing de NeuralGraph
+
+La ruta `/neuralgraph/` tiene HTML y metadatos SEO propios. Antes de publicarla:
+
+1. Copiar `.env.example` a `.env.local` y sustituir `FORM_ID` por la URL real de Typeform.
+2. Configurar en Typeform la redirección final a `https://coraldatalab.com/neuralgraph/gracias/`.
+3. Confirmar que el dominio está creado en Plausible o sustituir la integración analítica.
+4. Completar en la política de privacidad el nombre o razón social, NIF y domicilio del responsable.
+
+La campaña añade `utm_source=coraldatalab`, `utm_medium=website`,
+`utm_campaign=neuralgraph_research_preview` y distingue cada CTA con `utm_content`.
+Los eventos disponibles son `visit`, `survey_start` y `survey_complete`.
