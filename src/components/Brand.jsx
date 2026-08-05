@@ -7,8 +7,7 @@ export function Brand({ footer = false }) {
     >
       <span className="brand__mark" aria-hidden="true" />
       <span className="brand__name">
-        <span className="brand__coral">CORAL</span>
-        <span className="brand__rest">DATA LAB</span>
+        <span className="brand__coral">CORAL</span><span className="brand__rest">DATALAB</span>
       </span>
     </a>
   )
