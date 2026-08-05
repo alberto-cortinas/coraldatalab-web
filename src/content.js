@@ -1,19 +1,5 @@
 export const products = [
   {
-    name: 'Talos',
-    verb: 'Operar',
-    status: 'En implantación',
-    title: 'La operación de reparto, en un solo lugar.',
-    description:
-      'Convierte pedidos, consumo, flota y rutas en un plan diario que el equipo puede ver, ajustar y ejecutar.',
-    features: [
-      'Pedidos recibidos y estructurados',
-      'Planificación y optimización de rutas',
-      'Alertas de consumo y analítica operativa',
-    ],
-    motif: 'routes',
-  },
-  {
     name: 'NeuralGraph',
     verb: 'Verificar',
     status: 'I+D · developer preview',
@@ -40,6 +26,20 @@ export const products = [
       'Entrega web, no otro archivo estático',
     ],
     motif: 'story',
+  },
+  {
+    name: 'Talos',
+    verb: 'Operar',
+    status: 'En implantación',
+    title: 'La operación de reparto, en un solo lugar.',
+    description:
+      'Convierte pedidos, consumo, flota y rutas en un plan diario que el equipo puede ver, ajustar y ejecutar.',
+    features: [
+      'Pedidos recibidos y estructurados',
+      'Planificación y optimización de rutas',
+      'Alertas de consumo y analítica operativa',
+    ],
+    motif: 'routes',
   },
 ]
 

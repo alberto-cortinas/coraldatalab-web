@@ -12,9 +12,11 @@ export function ProductCard({ product, index }) {
 
   return (
     <article className={`product product--${product.motif}`}>
-      <div className="product__index">{numberLabel(index)}</div>
-      <div className="product__title">
+      <div className="product__top">
+        <span className="product__index">{numberLabel(index)}</span>
         <span className="product__icon" aria-hidden="true"><ProductIcon /></span>
+      </div>
+      <div className="product__title">
         <p className="product__verb">{product.verb}</p>
         <h3>{product.name}</h3>
         <span className="status">

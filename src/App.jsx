@@ -68,7 +68,7 @@ function Hero() {
 
 function Products() {
   return (
-    <section className="section" id="productos">
+    <section className="section section--products" id="productos">
       <div className="container">
         <div className="section-head">
           <div>
@@ -76,7 +76,7 @@ function Products() {
             <h2 className="t-display-l">La IA no es una función.<br />Es el punto de partida.</h2>
           </div>
           <p className="t-lead">
-            Talos, NeuralGraph y Mostra resuelven trabajos distintos. Los tres se
+            NeuralGraph, Mostra y Talos resuelven trabajos distintos. Los tres se
             construyen desde cero alrededor de capacidades que la IA hace posibles.
           </p>
         </div>
