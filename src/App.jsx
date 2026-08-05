@@ -54,14 +54,6 @@ function Hero() {
           </div>
 
           <div className="decision-map" aria-label="De datos dispersos a una decisión defendible">
-            <img
-              className="decision-map__image"
-              src="/images/living-structure.jpg"
-              alt=""
-              width="1536"
-              height="1024"
-              fetchPriority="high"
-            />
             <div className="decision-map__source">
               {sourceLabels.map((label) => <span key={label}>{label}</span>)}
             </div>
