@@ -70,10 +70,10 @@ export function NeuralGraphPage() {
             <div className="ng-hero__copy">
               <span className="ng-status"><i />Research preview · Seeking design partners</span>
               <p className="ng-kicker">NeuralGraph</p>
-              <h1>Infrastructure for production RAG and graph intelligence.</h1>
+              <h1>Inteligencia Artificial<br />en el ADN del producto.</h1>
               <p className="ng-hero__lead">
-                A Rust-native engine combining RAG, GraphRAG, embeddings and graph
-                algorithms in one operational platform.
+                Diseñamos el modelo, los datos y la experiencia como un único sistema desde
+                el origen. No añadimos IA como una capa sobre software heredado.
               </p>
               <div className="ng-actions">
                 <ResearchLink placement="hero" className="ng-button ng-button--primary">
