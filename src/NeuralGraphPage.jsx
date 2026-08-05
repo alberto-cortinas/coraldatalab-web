@@ -45,21 +45,6 @@ function ResearchLink({ placement, className = '', children }) {
   )
 }
 
-function NeuralGraphMark() {
-  return (
-    <figure className="ng-visual">
-      <img
-        src="/images/neuralgraph-hero.webp"
-        width="1396"
-        height="1127"
-        alt="Red orgánica de nodos interconectados en tonos violeta y azul"
-        fetchPriority="high"
-      />
-      <figcaption>vector · graph · provenance</figcaption>
-    </figure>
-  )
-}
-
 export function NeuralGraphPage() {
   useEffect(() => {
     initAnalytics()
@@ -99,7 +84,6 @@ export function NeuralGraphPage() {
                 </a>
               </div>
             </div>
-            <NeuralGraphMark />
           </div>
         </section>
 
