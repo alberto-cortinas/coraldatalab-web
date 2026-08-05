@@ -1,3 +1,15 @@
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Database,
+  FlaskConical,
+  KeyRound,
+  RefreshCcw,
+  Search,
+  ShieldCheck,
+  SlidersHorizontal,
+  Wrench,
+} from 'lucide-react'
 import { Brand } from './components/Brand.jsx'
 import { Header } from './components/Header.jsx'
 import { ProductCard } from './components/ProductCard.jsx'
@@ -13,6 +25,9 @@ const projectHref =
   'mailto:hola@coraldatalab.com?subject=Proyecto%20para%20Coral%20Data%20Lab'
 
 const detailedProjectHref = `${projectHref}&body=El%20problema%20que%20queremos%20resolver%20es%3A%0A%0ALos%20datos%20que%20tenemos%20son%3A%0A%0ALa%20decisi%C3%B3n%20que%20necesitamos%20tomar%20es%3A`
+
+const principleIcons = [Database, ShieldCheck, KeyRound, SlidersHorizontal]
+const methodIcons = [Search, FlaskConical, Wrench, RefreshCcw]
 
 function Hero() {
   return (
@@ -30,15 +45,23 @@ function Hero() {
             </p>
             <div className="hero__actions">
               <a className="btn btn--primary" href="#productos">
-                Conocer los productos <span aria-hidden="true">↓</span>
+                Conocer los productos <ArrowDown aria-hidden="true" />
               </a>
               <a className="text-link" href={projectHref}>
-                Plantear un proyecto <span aria-hidden="true">↗</span>
+                Plantear un proyecto <ArrowUpRight aria-hidden="true" />
               </a>
             </div>
           </div>
 
           <div className="decision-map" aria-label="De datos dispersos a una decisión defendible">
+            <img
+              className="decision-map__image"
+              src="/images/living-structure.jpg"
+              alt=""
+              width="1536"
+              height="1024"
+              fetchPriority="high"
+            />
             <div className="decision-map__source">
               {sourceLabels.map((label) => <span key={label}>{label}</span>)}
             </div>
@@ -121,7 +144,13 @@ function Principles() {
         <div className="principles">
           {principles.map((principle, index) => (
             <article key={principle.title}>
-              <span>{numberLabel(index)}</span>
+              <div className="principle__meta">
+                <span>{numberLabel(index)}</span>
+                {(() => {
+                  const PrincipleIcon = principleIcons[index]
+                  return <PrincipleIcon aria-hidden="true" />
+                })()}
+              </div>
               <h3>{principle.title}</h3>
               <p>{principle.description}</p>
             </article>
@@ -148,6 +177,10 @@ function Method() {
           {methodSteps.map(([title, description], index) => (
             <li key={title}>
               <span>{numberLabel(index)}</span>
+              {(() => {
+                const MethodIcon = methodIcons[index]
+                return <MethodIcon aria-hidden="true" />
+              })()}
               <div><h3>{title}</h3><p>{description}</p></div>
             </li>
           ))}
@@ -171,7 +204,7 @@ function Contact() {
             con lo que hacemos, también te lo diremos.
           </p>
           <a className="btn btn--primary" href={detailedProjectHref}>
-            Escribir a hola@coraldatalab.com <span aria-hidden="true">↗</span>
+            Escribir a hola@coraldatalab.com <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
       </div>

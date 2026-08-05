@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Menu, X } from 'lucide-react'
 import { Brand } from './Brand.jsx'
 
 const contactHref =
@@ -30,7 +31,7 @@ export function Header() {
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span>{menuOpen ? 'Cerrar' : 'Menú'}</span>
-          <i aria-hidden="true" />
+          {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
         <nav
           className={`nav${menuOpen ? ' nav--open' : ''}`}
