@@ -18,7 +18,6 @@ import {
   numberLabel,
   principles,
   products,
-  sourceLabels,
 } from './content.js'
 
 const projectHref =
@@ -53,16 +52,6 @@ function Hero() {
             </div>
           </div>
 
-          <div className="decision-map" aria-label="De datos dispersos a una decisión defendible">
-            <div className="decision-map__source">
-              {sourceLabels.map((label) => <span key={label}>{label}</span>)}
-            </div>
-            <div className="decision-map__line" aria-hidden="true" />
-            <div className="decision-map__result">
-              <span className="t-eyebrow">El resultado</span>
-              <strong>Una decisión<br />que se puede<br />defender.</strong>
-            </div>
-          </div>
         </div>
       </section>
 

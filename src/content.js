@@ -69,13 +69,4 @@ export const methodSteps = [
   ['Aprender', 'Uso real, límites claros y siguiente decisión.'],
 ]
 
-export const sourceLabels = [
-  'Pedidos',
-  'Documentos',
-  'Código',
-  'Consumo',
-  'Incidentes',
-  'Informes',
-]
-
 export const numberLabel = (index) => String(index + 1).padStart(2, '0')
