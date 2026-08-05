@@ -1,0 +1,11 @@
+tunnel: b9e049de-73e9-4e82-987d-cfbd19c16acf
+credentials-file: /etc/cloudflared/credentials.json
+
+protocol: quic
+
+ingress:
+  - hostname: coraldatalab.com
+    service: http://web:80
+  - hostname: www.coraldatalab.com
+    service: http://web:80
+  - service: http_status:404
