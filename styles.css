@@ -8,18 +8,7 @@
 .brand__name{display:flex;align-items:baseline;gap:7px;font:500 17px/1 'Newsreader',Georgia,serif;letter-spacing:.075em;font-optical-sizing:auto;white-space:nowrap}
 .brand__coral{color:var(--c-600)}
 .brand__rest{color:var(--n-900)}
-.brand__mark{position:relative;width:36px;height:34px;display:inline-block;flex:none}
-.brand__mark:before,.brand__mark:after{content:"";position:absolute;left:4px;bottom:2px;width:25px;height:9px;border-top:1px solid var(--n-300);border-radius:50%;transform:rotate(-7deg)}
-.brand__mark:after{left:7px;bottom:5px;width:20px;height:7px;border-color:var(--c-200);opacity:.8}
-.brand__trunk{position:absolute;left:17px;bottom:7px;width:1px;height:23px;background:var(--n-700);transform:rotate(8deg);transform-origin:bottom;z-index:1}
-.brand__trunk:before,.brand__trunk:after{content:"";position:absolute;left:0;top:8px;width:15px;height:1px;background:var(--n-700);transform:rotate(-34deg);transform-origin:left}
-.brand__trunk:after{top:13px;width:14px;transform:rotate(208deg)}
-.brand__mark i{position:absolute;width:5px;height:5px;border:1px solid var(--c-500);background:var(--paper);border-radius:50%;z-index:2}
-.brand__mark i:nth-of-type(1){left:15px;top:1px;background:var(--c-500)}
-.brand__mark i:nth-of-type(2){right:1px;top:8px;background:var(--c-500)}
-.brand__mark i:nth-of-type(3){left:1px;top:13px}
-.brand__mark i:nth-of-type(4){left:14px;bottom:5px;width:7px;height:7px;background:var(--c-600)}
-.brand__mark i:nth-of-type(5){right:10px;top:17px;width:4px;height:4px;background:var(--paper)}
+.brand__mark{width:29px;height:29px;display:inline-block;flex:none;border-radius:50%;background:var(--c-500);-webkit-mask:radial-gradient(circle 7px at 66% 35%,transparent 0 6.5px,#000 7px);mask:radial-gradient(circle 7px at 66% 35%,transparent 0 6.5px,#000 7px)}
 .nav{display:flex;align-items:center;gap:var(--sp-8)}.nav>a:not(.btn){font-size:14px;color:var(--n-600);text-decoration:none}.nav>a:hover{color:var(--n-900)}
 .menu-toggle{display:none;align-items:center;gap:10px;padding:8px 0;border:0;background:transparent;color:var(--n-700);font:500 13px/1 var(--sans);cursor:pointer}.menu-toggle svg{width:18px;height:18px;stroke-width:1.6}
 
