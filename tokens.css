@@ -1,0 +1,176 @@
+/* =========================================================
+   Coral Data Lab · design tokens
+   Fuente única de verdad. Nada de colores, tamaños ni
+   espaciados escritos a mano fuera de este archivo.
+   ========================================================= */
+
+:root {
+  /* --- Neutros. Heredados del sistema de producto, sin cambios --- */
+  --n-0:   #FFFFFF;
+  --n-25:  #FCFCFD;
+  --n-50:  #F6F7F9;
+  --n-100: #EDEFF3;
+  --n-200: #E0E4EA;   /* filete por defecto */
+  --n-300: #C7CDD6;   /* borde de control */
+  --n-400: #98A1AE;
+  --n-500: #6C7684;   /* metadatos */
+  --n-600: #4D5661;   /* texto secundario */
+  --n-700: #363E47;
+  --n-900: #15181C;   /* texto principal */
+
+  /* --- Coral. Único color de marca. Máximo 10% de superficie --- */
+  --c-50:  #FDF0ED;
+  --c-100: #FAD8D1;
+  --c-200: #F4B3A6;   /* ramas secundarias del motivo, texto sobre fondo profundo */
+  --c-500: #D8432B;   /* relleno de marca, botón primario, nodos */
+  --c-600: #B5341F;   /* hover, enlaces, eyebrow */
+  --c-700: #8C2716;   /* texto sobre c-50 */
+
+  /* --- Fondo profundo. Una sola banda por página --- */
+  --ink-900: #0E1A1F;
+  --ink-800: #16262D;
+  --ink-text: #B9C4C9;
+  --ink-line: rgba(255, 255, 255, .14);
+
+  /* --- Superficies editoriales --- */
+  --paper: #FBFAF7;
+  --warm:  #F3EFE8;
+
+  /* --- Espaciado. Base 4. Nada fuera de la escala --- */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+  --sp-32: 128px;
+
+  /* --- Radios --- */
+  --r-sm: 6px;    /* controles */
+  --r-md: 8px;    /* bloques sin borde */
+  --r-lg: 12px;   /* tarjetas */
+
+  /* --- Bordes y foco. Sin sombras en ningún caso --- */
+  --border:      1px solid var(--n-200);
+  --border-ctrl: 1px solid var(--n-300);
+  --focus-ring:  2px solid var(--c-500);
+
+  /* --- Tipografía --- */
+  --display: 'Fraunces', Georgia, serif;
+  --sans:    'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* --- Layout --- */
+  --container: 1120px;
+  --gutter:    var(--sp-6);
+  --measure:   68ch;   /* medida máxima de todo texto corrido */
+
+  /* --- Alturas de control --- */
+  --h-btn:    44px;
+  --h-btn-sm: 38px;
+  --h-input:  40px;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--n-900);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+p { max-width: var(--measure); }
+
+.container {
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* =========================================================
+   Roles tipográficos
+   Solo pesos 400 y 500. Nunca 600 ni 700.
+   Nunca mayúsculas sostenidas: el eyebrow usa mono + tracking.
+   ========================================================= */
+
+.t-display-xl {
+  font-family: var(--display);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -1.2px;
+  margin: 0;
+}
+
+.t-display-l {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -.6px;
+  margin: 0 0 var(--sp-4);
+}
+
+.t-display-m {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -.2px;
+  margin: 0 0 var(--sp-2);
+}
+
+.t-lead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--n-600);
+  max-width: var(--measure);
+}
+
+.t-body    { font-size: 16px; line-height: 1.7; }
+.t-body-s  { font-size: 14px; line-height: 1.6; }
+.t-caption { font-size: 13px; line-height: 1.5; color: var(--n-500); }
+
+.t-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--c-600);
+  margin: 0 0 var(--sp-4);
+}
+
+.t-num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* =========================================================
+   Ritmo de sección
+   ========================================================= */
+
+.section { padding-block: clamp(80px, 10vw, 128px); }
+.section--rule { border-top: var(--border); }
+
+@media (max-width: 720px) {
+  .section { padding-block: var(--sp-16); }
+}
