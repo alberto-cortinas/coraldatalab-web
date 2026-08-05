@@ -12,8 +12,10 @@ export function PrivacyPage() {
 
         <h2>Responsable del tratamiento</h2>
         <p>
-          Coral Data Lab es responsable del tratamiento de los datos recogidos mediante
-          esta web y la investigación de NeuralGraph. Contacto: <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
+          Alberto Cortinas, persona física que opera bajo el nombre comercial Coral Data Lab,
+          es responsable del tratamiento de los datos recogidos mediante esta web y la
+          investigación de NeuralGraph. Coral Data Lab no es una sociedad mercantil.
+          Contacto: <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>.
         </p>
 
         <h2>Datos y finalidad</h2>
