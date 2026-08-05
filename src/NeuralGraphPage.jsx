@@ -18,27 +18,24 @@ import {
   surveyUrl,
   trackNeuralGraph,
 } from './neuralgraph-config.js'
+import {
+  currentLanguage,
+  languageLabels,
+  languagePaths,
+  neuralGraphCopy,
+  privacyPaths,
+} from './neuralgraph-i18n.js'
 
-const capabilities = [
-  [ScanSearch, 'RAG vectorial, híbrido y GraphRAG.'],
-  [CircleDotDashed, 'Generación y almacenamiento de embeddings.'],
-  [GitBranch, 'Extracción de entidades y relaciones.'],
-  [Network, 'Algoritmos de grafos y detección de comunidades.'],
-  [Braces, 'Recuperación con procedencia y explicabilidad.'],
-  [RefreshCcw, 'Ingestión incremental y actualización del conocimiento.'],
-  [ChartNoAxesCombined, 'Observabilidad, evaluación, coste y latencia.'],
-  [CloudCog, 'Despliegue cloud, on-premise o embebido.'],
-  [Boxes, 'Core nativo en Rust.'],
-]
+const capabilityIcons = [ScanSearch, CircleDotDashed, GitBranch, Network, Braces, RefreshCcw, ChartNoAxesCombined, CloudCog, Boxes]
 
-function ResearchLink({ placement, className = '', children }) {
-  const href = surveyUrl(placement)
+function ResearchLink({ placement, language, className = '', children }) {
+  const href = surveyUrl(placement, language)
 
   return (
     <a
       className={className}
       href={href}
-      onClick={() => trackNeuralGraph('survey_start', { placement })}
+      onClick={() => trackNeuralGraph('survey_start', { placement, language })}
     >
       {children}
     </a>
@@ -46,20 +43,30 @@ function ResearchLink({ placement, className = '', children }) {
 }
 
 export function NeuralGraphPage() {
+  const language = currentLanguage()
+  const copy = neuralGraphCopy[language]
+
   useEffect(() => {
     initAnalytics()
-    trackNeuralGraph('visit', { path: window.location.pathname })
-  }, [])
+    trackNeuralGraph('visit', { path: window.location.pathname, language })
+  }, [language])
 
   return (
     <div className="ng-page" id="inicio">
-      <a className="skip" href="#contenido">Saltar al contenido</a>
+      <a className="skip" href="#contenido">{copy.skip}</a>
       <header className="ng-header">
         <div className="ng-container ng-header__row">
           <Brand />
           <span className="ng-header__product">/ NeuralGraph</span>
+          <nav className="ng-languages" aria-label={copy.languageNav}>
+            {Object.entries(languagePaths).map(([code, path]) => (
+              <a key={code} href={path} hrefLang={code} aria-current={code === language ? 'page' : undefined}>
+                {languageLabels[code]}
+              </a>
+            ))}
+          </nav>
           <a className="ng-header__contact" href={`mailto:${neuralGraphContact}`}>
-            Contacto <ArrowRight aria-hidden="true" />
+            {copy.contact} <ArrowRight aria-hidden="true" />
           </a>
         </div>
       </header>
@@ -68,19 +75,16 @@ export function NeuralGraphPage() {
         <section className="ng-hero">
           <div className="ng-container ng-hero__grid">
             <div className="ng-hero__copy">
-              <span className="ng-status"><i />Research preview · Seeking design partners</span>
+              <span className="ng-status"><i />{copy.status}</span>
               <p className="ng-kicker">NeuralGraph</p>
-              <h1>Inteligencia Artificial<br />en el ADN del producto.</h1>
-              <p className="ng-hero__lead">
-                Diseñamos el modelo, los datos y la experiencia como un único sistema desde
-                el origen. No añadimos IA como una capa sobre software heredado.
-              </p>
+              <h1>{copy.heroTitle[0]}<br />{copy.heroTitle[1]}</h1>
+              <p className="ng-hero__lead">{copy.heroLead}</p>
               <div className="ng-actions">
-                <ResearchLink placement="hero" className="ng-button ng-button--primary">
-                  Participar en la investigación <ArrowRight aria-hidden="true" />
+                <ResearchLink placement="hero" language={language} className="ng-button ng-button--primary">
+                  {copy.researchCta} <ArrowRight aria-hidden="true" />
                 </ResearchLink>
                 <a className="ng-button ng-button--text" href={`mailto:${neuralGraphContact}?subject=NeuralGraph`}>
-                  Hablar con el equipo
+                  {copy.talkCta}
                 </a>
               </div>
             </div>
@@ -89,15 +93,11 @@ export function NeuralGraphPage() {
 
         <section className="ng-section ng-problem">
           <div className="ng-container ng-two-col">
-            <p className="ng-section__label">01 / El problema</p>
+            <p className="ng-section__label">{copy.problemLabel}</p>
             <div>
-              <h2>Una pila fragmentada es difícil de operar.</h2>
-              <p className="ng-copy-large">
-                Llevar RAG a producción suele implicar integrar bases vectoriales, motores
-                de grafos, pipelines de ingestión, modelos de embeddings y sistemas de
-                observabilidad independientes.
-              </p>
-              <p>NeuralGraph explora una infraestructura unificada para reducir esa fragmentación.</p>
+              <h2>{copy.problemTitle}</h2>
+              <p className="ng-copy-large">{copy.problemLead}</p>
+              <p>{copy.problemBody}</p>
             </div>
           </div>
         </section>
@@ -105,30 +105,30 @@ export function NeuralGraphPage() {
         <section className="ng-section ng-capabilities">
           <div className="ng-container">
             <div className="ng-section-head">
-              <p className="ng-section__label">02 / Investigación</p>
-              <h2>Capacidades que estamos validando</h2>
+              <p className="ng-section__label">{copy.capabilitiesLabel}</p>
+              <h2>{copy.capabilitiesTitle}</h2>
             </div>
             <div className="ng-capability-grid">
-              {capabilities.map(([Icon, label], index) => (
+              {copy.capabilities.map((label, index) => {
+                const Icon = capabilityIcons[index]
+                return (
                 <article key={label}>
                   <div><span>{String(index + 1).padStart(2, '0')}</span><Icon aria-hidden="true" /></div>
                   <p>{label}</p>
                 </article>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
 
         <section className="ng-section ng-audience">
           <div className="ng-container ng-two-col">
-            <p className="ng-section__label">03 / Para quién</p>
+            <p className="ng-section__label">{copy.audienceLabel}</p>
             <div>
-              <h2>Equipos que ya conocen el coste de operar RAG.</h2>
-              <p className="ng-copy-large">
-                AI Platform, Data Platform y Engineering con RAG en piloto o producción
-                que necesitan mayor control, rendimiento y mantenibilidad.
-              </p>
-              <div className="ng-tags" aria-label="Equipos objetivo">
+              <h2>{copy.audienceTitle}</h2>
+              <p className="ng-copy-large">{copy.audienceBody}</p>
+              <div className="ng-tags" aria-label={copy.audienceAria}>
                 <span>AI Platform</span><span>Data Platform</span><span>Engineering</span>
               </div>
             </div>
@@ -137,29 +137,22 @@ export function NeuralGraphPage() {
 
         <section className="ng-section ng-state">
           <div className="ng-container ng-two-col">
-            <p className="ng-section__label">04 / Estado del producto</p>
+            <p className="ng-section__label">{copy.stateLabel}</p>
             <div>
-              <h2>Discovery and design.</h2>
-              <p className="ng-copy-large">
-                NeuralGraph está en fase de descubrimiento y diseño. Estamos entrevistando
-                a equipos que operan sistemas de recuperación y GenAI para priorizar los
-                problemas correctos.
-              </p>
-              <p className="ng-state__note">Sin promesas prematuras. La evidencia define el producto.</p>
+              <h2>{copy.stateTitle}</h2>
+              <p className="ng-copy-large">{copy.stateBody}</p>
+              <p className="ng-state__note">{copy.stateNote}</p>
             </div>
           </div>
         </section>
 
         <section className="ng-cta">
           <div className="ng-container ng-cta__inner">
-            <p className="ng-section__label">Participa</p>
-            <h2>¿Trabajas con RAG, GraphRAG o búsqueda basada en IA?</h2>
-            <p>
-              Comparte tu experiencia en una encuesta de tres minutos y ayúdanos a diseñar
-              una infraestructura útil para producción.
-            </p>
-            <ResearchLink placement="final_cta" className="ng-button ng-button--primary">
-              Responder la encuesta <ArrowRight aria-hidden="true" />
+            <p className="ng-section__label">{copy.ctaLabel}</p>
+            <h2>{copy.ctaTitle}</h2>
+            <p>{copy.ctaBody}</p>
+            <ResearchLink placement="final_cta" language={language} className="ng-button ng-button--primary">
+              {copy.surveyCta} <ArrowRight aria-hidden="true" />
             </ResearchLink>
           </div>
         </section>
@@ -167,9 +160,9 @@ export function NeuralGraphPage() {
 
       <footer className="ng-footer">
         <div className="ng-container ng-footer__grid">
-          <p>NeuralGraph is a Coral Data Lab initiative.</p>
+          <p>{copy.initiative}</p>
           <a href={`mailto:${neuralGraphContact}`}>{neuralGraphContact}</a>
-          <a href="/privacidad/">Política de privacidad</a>
+          <a href={privacyPaths[language]}>{copy.privacy}</a>
         </div>
       </footer>
     </div>
@@ -177,19 +170,22 @@ export function NeuralGraphPage() {
 }
 
 export function NeuralGraphThanksPage() {
+  const language = currentLanguage()
+  const copy = neuralGraphCopy[language]
+
   useEffect(() => {
     initAnalytics()
-    trackNeuralGraph('survey_complete', { path: window.location.pathname })
-  }, [])
+    trackNeuralGraph('survey_complete', { path: window.location.pathname, language })
+  }, [language])
 
   return (
     <main className="ng-thanks">
       <div className="ng-container">
         <Brand />
-        <p className="ng-section__label">Investigación NeuralGraph</p>
-        <h1>Gracias por compartir tu experiencia.</h1>
-        <p>Tu respuesta nos ayudará a priorizar problemas reales de infraestructura RAG.</p>
-        <a className="ng-button ng-button--primary" href="/neuralgraph/">Volver a NeuralGraph</a>
+        <p className="ng-section__label">{copy.thanksLabel}</p>
+        <h1>{copy.thanksTitle}</h1>
+        <p>{copy.thanksBody}</p>
+        <a className="ng-button ng-button--primary" href={languagePaths[language]}>{copy.thanksBack}</a>
       </div>
     </main>
   )

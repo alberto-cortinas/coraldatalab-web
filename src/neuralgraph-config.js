@@ -4,7 +4,7 @@ export const neuralGraphCampaign = {
   name: 'neuralgraph_research_preview',
 }
 
-export const neuralGraphContact = 'alberto@coraldatalab.com'
+export const neuralGraphContact = 'hola@coraldatalab.com'
 
 const typeformBaseUrl =
   import.meta.env.VITE_NEURALGRAPH_TYPEFORM_URL || 'https://form.typeform.com/to/maIuMlXT'
@@ -30,18 +30,19 @@ export function initAnalytics() {
   document.head.append(script)
 }
 
-export function surveyUrl(placement) {
+export function surveyUrl(placement, language = 'es') {
   const url = new URL(typeformBaseUrl)
   url.searchParams.set('utm_source', neuralGraphCampaign.source)
   url.searchParams.set('utm_medium', neuralGraphCampaign.medium)
   url.searchParams.set('utm_campaign', neuralGraphCampaign.name)
-  url.searchParams.set('utm_content', placement)
+  url.searchParams.set('utm_content', `${language}_${placement}`)
 
   const hiddenFields = new URLSearchParams(url.hash.slice(1))
   hiddenFields.set('source', neuralGraphCampaign.source)
   hiddenFields.set('campaign', neuralGraphCampaign.name)
   hiddenFields.set('audience_segment', 'rag_teams')
-  hiddenFields.set('message_variant', placement)
+  hiddenFields.set('message_variant', `${language}_${placement}`)
+  hiddenFields.set('language', language)
   url.hash = hiddenFields.toString()
 
   return url.toString()
