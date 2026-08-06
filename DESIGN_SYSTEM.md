@@ -44,7 +44,9 @@ En escritorio el plano de tesis permanece fijo mientras los capítulos se despla
 
 ### Portada
 
-Tesis persistente a la izquierda. La primera pantalla del plano derecho es un índice editorial neutral: presenta el sistema completo sin preseleccionar ningún producto e invita a elegir uno de los tres capítulos. Solo después comienzan NeuralGraph, Mostra y Talos como escenas detalladas. Principios y método continúan como contenido editorial sin numeración. Contacto cierra el recorrido, pero no forma parte del índice de productos.
+Tesis persistente a la izquierda. El plano derecho funciona como un sistema periódico de productos sin preselección inicial ni recorrido vertical. La retícula respeta los 18 grupos, los siete periodos y el bloque `f`; todas las celdas son cuadradas y los productos ocupan las posiciones químicas de sus símbolos: NeuralGraph (`Ne`), Mostra (`Mo`) y Talos (`Ta`).
+
+Al seleccionar un producto, la tabla completa se reduce y pasa a segundo plano sin desaparecer. El detalle aparece en la misma escena y ofrece acceso a la página extensa cuando existe. Los elementos químicos de contexto usan un relleno gris apenas perceptible; las tres celdas de producto concentran el color y la interacción.
 
 ### Producto
 

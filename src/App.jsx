@@ -1,12 +1,37 @@
+import { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Brand } from './components/Brand.jsx'
-import { ProductCard } from './components/ProductCard.jsx'
-import { methodSteps, principles, products } from './content.js'
+import { products } from './content.js'
+import { fBlockElements, mainElements } from './periodic-elements.js'
 
-const projectHref =
+const contactHref =
   'mailto:hola@coraldatalab.com?subject=Proyecto%20para%20Coral%20Data%20Lab'
 
-const detailedProjectHref = `${projectHref}&body=El%20problema%20que%20queremos%20resolver%20es%3A%0A%0ALos%20datos%20que%20tenemos%20son%3A%0A%0ALa%20decisi%C3%B3n%20que%20necesitamos%20tomar%20es%3A`
+const productMeta = {
+  NeuralGraph: {
+    symbol: 'Ne',
+    number: 10,
+    color: 'neuralgraph',
+    action: 'Explorar NeuralGraph',
+    href: '/neuralgraph/',
+  },
+  Mostra: {
+    symbol: 'Mo',
+    number: 42,
+    color: 'mostra',
+    action: 'Hablar sobre Mostra',
+    href: 'mailto:hola@coraldatalab.com?subject=Mostra',
+  },
+  Talos: {
+    symbol: 'Ta',
+    number: 73,
+    color: 'talos',
+    action: 'Hablar sobre Talos',
+    href: 'mailto:hola@coraldatalab.com?subject=Talos',
+  },
+}
+
+const productByName = Object.fromEntries(products.map((product) => [product.name, product]))
 
 function SiteRail() {
   return (
@@ -21,108 +46,154 @@ function SiteRail() {
           el origen. No añadimos IA como una capa sobre software heredado.
         </p>
       </div>
-      <nav className="site-rail__editorial" aria-label="Contenido editorial">
-        <a href="#principios">Principios →</a>
-        <a href="#metodo">Cómo trabajamos →</a>
-      </nav>
       <div className="site-rail__utilities">
         <span>Barcelona · Remoto</span>
-        <a href={projectHref}>Hablemos →</a>
+        <a href={contactHref}>Hablemos →</a>
       </div>
     </aside>
   )
 }
 
-function ProductIndex() {
+function ElementCell({ element, selectedName, onSelect, compact = false }) {
+  const [number, symbol, column, row, productName] = element
+  const style = { gridColumn: column, gridRow: row }
+
+  if (!productName) {
+    return (
+      <span className="periodic-element" style={style} aria-hidden="true">
+        <span>{number}</span>
+        <strong>{symbol}</strong>
+      </span>
+    )
+  }
+
+  const meta = productMeta[productName]
   return (
-    <section className="product-index-panel" aria-label="Índice de productos">
-      <div className="product-index-panel__top">
-        <span>03 productos · Un sistema</span>
-        <span>Selecciona un producto ↓</span>
+    <button
+      type="button"
+      className={`periodic-element periodic-element--product periodic-element--${meta.color}`}
+      style={style}
+      aria-label={`Mostrar ${productName}`}
+      aria-pressed={selectedName === productName}
+      onClick={() => onSelect(productName)}
+      tabIndex={compact ? -1 : 0}
+    >
+      <span>{number}</span>
+      <strong>{symbol}</strong>
+      <small>{productName}</small>
+    </button>
+  )
+}
+
+function PeriodicTable({ selectedName, onSelect }) {
+  const compact = Boolean(selectedName)
+
+  return (
+    <div className="periodic-system" aria-label="Sistema periódico de productos">
+      <div className="periodic-system__group-axis" aria-hidden="true">
+        {Array.from({ length: 18 }, (_, index) => <span key={index}>{index + 1}</span>)}
       </div>
-      <div className="product-index-panel__feature product-index-panel__feature--neutral">
-        <div>
-          <p>Productos AI-native</p>
-          <h2>Queremos que nos conozcas a través de nuestro trabajo.</h2>
-          <p>Selecciona uno de los productos para descubrir el problema que aborda, cómo lo estamos construyendo y en qué estado se encuentra.</p>
+      <div className="periodic-system__period-axis" aria-hidden="true">
+        {Array.from({ length: 7 }, (_, index) => <span key={index}>{index + 1}</span>)}
+      </div>
+      <div className="periodic-system__body">
+        <div className="periodic-system__main">
+          {mainElements.map((element) => (
+            <ElementCell
+              key={element[0]}
+              element={element}
+              selectedName={selectedName}
+              onSelect={onSelect}
+              compact={compact}
+            />
+          ))}
+        </div>
+        <div className="periodic-system__f-block">
+          <span className="periodic-system__f-label" aria-hidden="true">f</span>
+          <div className="periodic-system__f-grid">
+            {fBlockElements.map((element) => (
+              <ElementCell
+                key={element[0]}
+                element={element}
+                selectedName={selectedName}
+                onSelect={onSelect}
+                compact={compact}
+              />
+            ))}
+          </div>
         </div>
       </div>
-      <nav className="product-index-list" aria-label="Productos">
-        {products.map((product, index) => (
-          <a key={product.name} href={`#${product.name.toLowerCase()}`}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{product.name}</strong>
-            <small>Producto</small>
-          </a>
-        ))}
-      </nav>
-      <div className="product-index-panel__editorial">
-        <a href="#principios">Principios →</a>
-        <span aria-disabled="true">Notas del laboratorio →</span>
-      </div>
-    </section>
+    </div>
   )
 }
 
-function Principles() {
+function MobileProductSelector({ selectedName, onSelect }) {
   return (
-    <section className="editorial-panel" id="principios">
-      <div className="editorial-panel__intro">
-        <p className="t-eyebrow">Principios · Coral Data Lab</p>
-        <h2>Lo que creemos define lo que construimos.</h2>
-        <p>Decisiones de producto y tecnología, no promesas corporativas.</p>
-      </div>
-      <div className="principle-list">
-        {principles.map((principle, index) => (
-          <article key={principle.title}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <div>
-              <h3>{principle.title}</h3>
-              <p>{principle.description}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+    <div className="mobile-product-selector" aria-label="Seleccionar producto">
+      {products.map((product) => {
+        const meta = productMeta[product.name]
+        return (
+          <button
+            key={product.name}
+            type="button"
+            className={`mobile-product-selector__item mobile-product-selector__item--${meta.color}`}
+            aria-pressed={selectedName === product.name}
+            onClick={() => onSelect(product.name)}
+          >
+            <strong>{meta.symbol}</strong>
+            <small>{product.name}</small>
+          </button>
+        )
+      })}
+    </div>
   )
 }
 
-function Method() {
-  return (
-    <section className="method-panel" id="metodo">
-      <div className="method-panel__intro">
-        <p className="t-eyebrow">Del problema al producto</p>
-        <h2>Avanzamos solo cuando hay evidencia.</h2>
-        <p>Cada etapa termina en algo visible y en una decisión clara.</p>
-      </div>
-      <ol>
-        {methodSteps.map(([title, description], index) => (
-          <li key={title}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <div><h3>{title}</h3><p>{description}</p></div>
-          </li>
-        ))}
-      </ol>
-    </section>
-  )
-}
+function ProductDetail({ name }) {
+  const product = productByName[name]
+  const meta = productMeta[name]
 
-function StreamFooter() {
   return (
-    <footer className="stream-footer">
-      <div>
-        <p className="t-eyebrow">Una conversación concreta</p>
-        <h2>¿Dónde se atasca hoy la decisión?</h2>
-        <p>Cuéntanos el problema, los datos disponibles y quién necesita decidir.</p>
-      </div>
-      <a href={detailedProjectHref}>
-        hola@coraldatalab.com <ArrowUpRight aria-hidden="true" />
+    <article className={`product-detail product-detail--${meta.color}`}>
+      <p className="product-detail__meta">{product.verb} · {product.status}</p>
+      <h2>{product.name}</h2>
+      <h3>{product.title}</h3>
+      <p>{product.description}</p>
+      <a href={meta.href}>
+        {meta.action} <ArrowUpRight aria-hidden="true" />
       </a>
-      <div className="stream-footer__meta">
-        <span>© 2026 Coral Data Lab</span>
-        <a href="/privacidad/">Privacidad</a>
+      <span className="product-detail__symbol" aria-hidden="true">{meta.symbol}</span>
+    </article>
+  )
+}
+
+function ProductSystem() {
+  const [selectedName, setSelectedName] = useState(null)
+
+  return (
+    <main className={`product-stage${selectedName ? ' product-stage--selected' : ''}`} id="productos">
+      <div className="product-stage__top">
+        <span>{selectedName ? `Producto seleccionado · ${productMeta[selectedName].symbol}` : 'Sistema de productos'}</span>
+        <button type="button" onClick={() => setSelectedName(null)}>
+          ← Volver al sistema
+        </button>
       </div>
-    </footer>
+
+      <div className="product-stage__table">
+        <div className="product-stage__heading">
+          <h2>Elige un elemento.</h2>
+          <p>Una tabla.<br />Tres productos.</p>
+        </div>
+        <PeriodicTable selectedName={selectedName} onSelect={setSelectedName} />
+        <div className="product-stage__legend" aria-hidden="true">
+          <span><i />Contexto</span>
+          <span><i />Producto</span>
+        </div>
+        <MobileProductSelector selectedName={selectedName} onSelect={setSelectedName} />
+      </div>
+
+      {selectedName && <ProductDetail name={selectedName} />}
+    </main>
   )
 }
 
@@ -132,15 +203,7 @@ export default function App() {
       <a className="skip" href="#productos">Saltar a los productos</a>
       <div className="site-layout" id="inicio">
         <SiteRail />
-        <main className="site-stream" id="productos">
-          <ProductIndex />
-          {products.map((product, index) => (
-            <ProductCard key={product.name} product={product} index={index} />
-          ))}
-          <Principles />
-          <Method />
-          <StreamFooter />
-        </main>
+        <ProductSystem />
       </div>
     </>
   )

@@ -36,6 +36,14 @@
   --paper: #FBFAF7;
   --warm:  #F3EFE8;
 
+  /* --- Sistema periódico de productos --- */
+  --element-fill: #FAFAF8;
+  --element-line: #E9EAE7;
+  --element-text: #A4AAAB;
+  --product-neuralgraph: #CBC6EE;
+  --product-mostra: #C7DCF2;
+  --product-talos: #F2AFA3;
+
   /* --- Espaciado. Base 4. Nada fuera de la escala --- */
   --sp-1:  4px;
   --sp-2:  8px;
