@@ -2,7 +2,7 @@ export const privacyCopy = {
   es: {
     label: 'Información legal', title: 'Política de privacidad', updated: 'Última actualización: 5 de agosto de 2026',
     responsibleTitle: 'Responsable del tratamiento',
-    responsible: 'Alberto Cortinas, persona física que opera bajo el nombre comercial Coral Data Lab, es responsable del tratamiento de los datos recogidos mediante esta web y la investigación de NeuralGraph. Coral Data Lab no es una sociedad mercantil.',
+    responsible: 'Alberto Martínez, persona física que opera bajo el nombre comercial Coral Data Lab, es responsable del tratamiento de los datos recogidos mediante esta web y la investigación de NeuralGraph. Coral Data Lab no es una sociedad mercantil.',
     contact: 'Contacto', dataTitle: 'Datos y finalidad',
     data: 'Si participas en la investigación, trataremos las respuestas que facilites y, cuando corresponda, tus datos profesionales y de contacto para estudiar necesidades relacionadas con RAG y GraphRAG y para organizar entrevistas de investigación.',
     legalTitle: 'Base jurídica y conservación',
@@ -15,7 +15,7 @@ export const privacyCopy = {
   ca: {
     label: 'Informació legal', title: 'Política de privacitat', updated: 'Darrera actualització: 5 d’agost de 2026',
     responsibleTitle: 'Responsable del tractament',
-    responsible: 'Alberto Cortinas, persona física que opera sota el nom comercial Coral Data Lab, és responsable del tractament de les dades recollides mitjançant aquest web i la recerca de NeuralGraph. Coral Data Lab no és una societat mercantil.',
+    responsible: 'Alberto Martínez, persona física que opera sota el nom comercial Coral Data Lab, és responsable del tractament de les dades recollides mitjançant aquest web i la recerca de NeuralGraph. Coral Data Lab no és una societat mercantil.',
     contact: 'Contacte', dataTitle: 'Dades i finalitat',
     data: 'Si participes en la recerca, tractarem les respostes que facilitis i, quan correspongui, les teves dades professionals i de contacte per estudiar necessitats relacionades amb RAG i GraphRAG i per organitzar entrevistes de recerca.',
     legalTitle: 'Base jurídica i conservació',
@@ -28,7 +28,7 @@ export const privacyCopy = {
   en: {
     label: 'Legal information', title: 'Privacy policy', updated: 'Last updated: 5 August 2026',
     responsibleTitle: 'Data controller',
-    responsible: 'Alberto Cortinas, an individual operating under the Coral Data Lab trade name, is the controller of the data collected through this website and the NeuralGraph research. Coral Data Lab is not an incorporated company.',
+    responsible: 'Alberto Martínez, an individual operating under the Coral Data Lab trade name, is the controller of the data collected through this website and the NeuralGraph research. Coral Data Lab is not an incorporated company.',
     contact: 'Contact', dataTitle: 'Data and purpose',
     data: 'If you take part in the research, we will process the answers you provide and, where applicable, your professional and contact details to study needs related to RAG and GraphRAG and to arrange research interviews.',
     legalTitle: 'Legal basis and retention',
