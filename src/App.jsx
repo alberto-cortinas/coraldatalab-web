@@ -1,142 +1,56 @@
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Database,
-  FlaskConical,
-  KeyRound,
-  RefreshCcw,
-  Search,
-  ShieldCheck,
-  SlidersHorizontal,
-  Wrench,
-} from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import { Brand } from './components/Brand.jsx'
-import { Header } from './components/Header.jsx'
 import { ProductCard } from './components/ProductCard.jsx'
-import {
-  methodSteps,
-  numberLabel,
-  principles,
-  products,
-} from './content.js'
+import { methodSteps, principles, products } from './content.js'
 
 const projectHref =
   'mailto:hola@coraldatalab.com?subject=Proyecto%20para%20Coral%20Data%20Lab'
 
 const detailedProjectHref = `${projectHref}&body=El%20problema%20que%20queremos%20resolver%20es%3A%0A%0ALos%20datos%20que%20tenemos%20son%3A%0A%0ALa%20decisi%C3%B3n%20que%20necesitamos%20tomar%20es%3A`
 
-const principleIcons = [Database, ShieldCheck, KeyRound, SlidersHorizontal]
-const methodIcons = [Search, FlaskConical, Wrench, RefreshCcw]
-
-function Hero() {
+function SiteRail() {
   return (
-    <>
-      <section className="hero" id="inicio">
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <p className="t-eyebrow">Productos AI-native · I+D propio</p>
-            <h1 className="t-display-xl">
-              IA en el ADN<br />del producto.<br /><em>No como una capa.</em>
-            </h1>
-            <p className="t-lead">
-              Diseñamos el modelo, los datos y la experiencia como un único sistema desde
-              el origen. No añadimos IA al final sobre software heredado.
-            </p>
-            <div className="hero__actions">
-              <a className="btn btn--primary" href="#productos">
-                Conocer los productos <ArrowDown aria-hidden="true" />
-              </a>
-              <a className="text-link" href={projectHref}>
-                Plantear un proyecto <ArrowUpRight aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section className="proof-strip" aria-label="Propuesta de valor">
-        <div className="container proof-strip__grid">
-          <p><span>01</span> La IA define el producto desde el inicio.</p>
-          <p><span>02</span> Datos, modelo y experiencia nacen juntos.</p>
-          <p><span>03</span> Diseñamos para los datos de verdad.</p>
-        </div>
-      </section>
-    </>
-  )
-}
-
-function Products() {
-  return (
-    <section className="section section--products" id="productos">
-      <div className="container">
-        <div className="section-head">
-          <div>
-            <p className="t-eyebrow">Tres productos · una arquitectura AI-native</p>
-            <h2 className="t-display-l">La IA no es una función.<br />Es el punto de partida.</h2>
-          </div>
-          <p className="t-lead">
-            NeuralGraph, Mostra y Talos resuelven trabajos distintos. Los tres se
-            construyen desde cero alrededor de capacidades que la IA hace posibles.
-          </p>
-        </div>
-        <div className="product-list">
-          {products.map((product, index) => (
-            <ProductCard key={product.name} product={product} index={index} />
-          ))}
-        </div>
+    <aside className="site-rail">
+      <Brand />
+      <span className="site-rail__ghost" aria-hidden="true">AI</span>
+      <div className="site-rail__statement">
+        <p className="t-eyebrow">Coral Data Lab · Productos AI-native</p>
+        <h1>Inteligencia Artificial<br />en el ADN<br />del producto.</h1>
+        <p>
+          Diseñamos el modelo, los datos y la experiencia como un único sistema desde
+          el origen. No añadimos IA como una capa sobre software heredado.
+        </p>
       </div>
-    </section>
-  )
-}
-
-function Approach() {
-  return (
-    <section className="section section--warm" id="enfoque">
-      <div className="container thesis">
-        <p className="t-eyebrow">Qué significa AI-native</p>
-        <blockquote>Un producto AI-native no empieza por añadir un modelo.</blockquote>
-        <div className="thesis__grid">
-          <p>
-            Empieza por replantear el trabajo completo alrededor de lo que la IA permite
-            hacer. Ingestión, modelo, recuperación, decisiones e interfaz se diseñan como
-            una sola pieza.
-          </p>
-          <p>
-            Así la IA puede comprender el contexto, actuar dentro del flujo real y explicar
-            su resultado. No queda aislada en una ventana de chat sobre un producto heredado.
-          </p>
-        </div>
+      <nav className="site-rail__editorial" aria-label="Contenido editorial">
+        <a href="#principios">Principios →</a>
+        <a href="#metodo">Cómo trabajamos →</a>
+      </nav>
+      <div className="site-rail__utilities">
+        <span>Barcelona · Remoto</span>
+        <a href={projectHref}>Hablemos →</a>
       </div>
-    </section>
+    </aside>
   )
 }
 
 function Principles() {
   return (
-    <section className="section" id="principios">
-      <div className="container">
-        <div className="section-head section-head--compact">
-          <div>
-            <p className="t-eyebrow">Cómo elegimos</p>
-            <h2 className="t-display-l">Principios antes<br />que promesas.</h2>
-          </div>
-        </div>
-        <div className="principles">
-          {principles.map((principle, index) => (
-            <article key={principle.title}>
-              <div className="principle__meta">
-                <span>{numberLabel(index)}</span>
-                {(() => {
-                  const PrincipleIcon = principleIcons[index]
-                  return <PrincipleIcon aria-hidden="true" />
-                })()}
-              </div>
+    <section className="editorial-panel" id="principios">
+      <div className="editorial-panel__intro">
+        <p className="t-eyebrow">Principios · Coral Data Lab</p>
+        <h2>Lo que creemos define lo que construimos.</h2>
+        <p>Decisiones de producto y tecnología, no promesas corporativas.</p>
+      </div>
+      <div className="principle-list">
+        {principles.map((principle, index) => (
+          <article key={principle.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div>
               <h3>{principle.title}</h3>
               <p>{principle.description}</p>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )
@@ -144,62 +58,38 @@ function Principles() {
 
 function Method() {
   return (
-    <section className="section section--ink">
-      <div className="container method">
-        <div className="method__intro">
-          <p className="t-eyebrow">De problema a producto</p>
-          <h2 className="t-display-l">Avanzamos solo<br />cuando hay evidencia.</h2>
-          <p>
-            Validamos primero el riesgo que puede matar el proyecto. Cada etapa termina
-            en algo visible y en una decisión clara.
-          </p>
-        </div>
-        <ol className="method__steps">
-          {methodSteps.map(([title, description], index) => (
-            <li key={title}>
-              <span>{numberLabel(index)}</span>
-              {(() => {
-                const MethodIcon = methodIcons[index]
-                return <MethodIcon aria-hidden="true" />
-              })()}
-              <div><h3>{title}</h3><p>{description}</p></div>
-            </li>
-          ))}
-        </ol>
+    <section className="method-panel" id="metodo">
+      <div className="method-panel__intro">
+        <p className="t-eyebrow">Del problema al producto</p>
+        <h2>Avanzamos solo cuando hay evidencia.</h2>
+        <p>Cada etapa termina en algo visible y en una decisión clara.</p>
       </div>
+      <ol>
+        {methodSteps.map(([title, description], index) => (
+          <li key={title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div><h3>{title}</h3><p>{description}</p></div>
+          </li>
+        ))}
+      </ol>
     </section>
   )
 }
 
-function Contact() {
+function StreamFooter() {
   return (
-    <section className="section contact" id="contacto">
-      <div className="container contact__grid">
-        <div>
-          <p className="t-eyebrow">Una conversación concreta</p>
-          <h2 className="t-display-l">¿Dónde se atasca<br />hoy la decisión?</h2>
-        </div>
-        <div className="contact__body">
-          <p className="t-lead">
-            Cuéntanos el problema, qué datos existen y quién necesita decidir. Si no encaja
-            con lo que hacemos, también te lo diremos.
-          </p>
-          <a className="btn btn--primary" href={detailedProjectHref}>
-            Escribir a hola@coraldatalab.com <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
+    <footer className="stream-footer">
+      <div>
+        <p className="t-eyebrow">Una conversación concreta</p>
+        <h2>¿Dónde se atasca hoy la decisión?</h2>
+        <p>Cuéntanos el problema, los datos disponibles y quién necesita decidir.</p>
       </div>
-    </section>
-  )
-}
-
-function Footer() {
-  return (
-    <footer className="site-foot">
-      <div className="container site-foot__row">
-        <Brand footer />
-        <p>Barcelona · Trabajamos en remoto</p>
-        <p>© 2026 Coral Data Lab</p>
+      <a href={detailedProjectHref}>
+        hola@coraldatalab.com <ArrowUpRight aria-hidden="true" />
+      </a>
+      <div className="stream-footer__meta">
+        <span>© 2026 Coral Data Lab</span>
+        <a href="/privacidad/">Privacidad</a>
       </div>
     </footer>
   )
@@ -208,17 +98,18 @@ function Footer() {
 export default function App() {
   return (
     <>
-      <a className="skip" href="#contenido">Saltar al contenido</a>
-      <Header />
-      <main id="contenido">
-        <Hero />
-        <Products />
-        <Approach />
-        <Principles />
-        <Method />
-        <Contact />
-      </main>
-      <Footer />
+      <a className="skip" href="#productos">Saltar a los productos</a>
+      <div className="site-layout" id="inicio">
+        <SiteRail />
+        <main className="site-stream" id="productos">
+          {products.map((product, index) => (
+            <ProductCard key={product.name} product={product} index={index} />
+          ))}
+          <Principles />
+          <Method />
+          <StreamFooter />
+        </main>
+      </div>
     </>
   )
 }

@@ -71,6 +71,12 @@
   --gutter:    var(--sp-6);
   --measure:   68ch;   /* medida máxima de todo texto corrido */
 
+  /* --- Sistema editorial por capítulos --- */
+  --rail-ratio: 39%;
+  --stream-ratio: 61%;
+  --chapter-min: 100svh;
+  --chapter-rule: 1px solid var(--n-200);
+
   /* --- Alturas de control --- */
   --h-btn:    44px;
   --h-btn-sm: 38px;
