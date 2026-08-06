@@ -57,6 +57,7 @@ export function NeuralGraphPage() {
           <div className="ng-rail__brand">
             <Brand href="/" />
             <span>/ NeuralGraph</span>
+            <a className="ng-home-link" href="/">← {copy.homeLink}</a>
           </div>
           <div className="ng-rail__hero">
             <span className="ng-status"><i />{copy.status}</span>
@@ -169,6 +170,7 @@ export function NeuralGraphThanksPage() {
           <h1>{copy.thanksTitle}</h1>
           <p>{copy.thanksBody}</p>
           <a className="ng-button ng-button--primary" href={languagePaths[language]}>{copy.thanksBack}</a>
+          <a className="ng-thanks__home" href="/">← {copy.homeLink}</a>
         </div>
       </div>
     </main>
