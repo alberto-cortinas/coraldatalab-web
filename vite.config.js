@@ -9,6 +9,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
+        mainCa: resolve(import.meta.dirname, 'ca/index.html'),
+        mainEn: resolve(import.meta.dirname, 'en/index.html'),
         neuralgraph: resolve(import.meta.dirname, 'neuralgraph/index.html'),
         neuralgraphCa: resolve(import.meta.dirname, 'neuralgraph/ca/index.html'),
         neuralgraphEn: resolve(import.meta.dirname, 'neuralgraph/en/index.html'),

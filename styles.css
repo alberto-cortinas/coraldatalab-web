@@ -15,8 +15,10 @@ button{font:inherit}
 .site-rail__editorial{display:flex;flex-wrap:wrap;gap:8px 22px}
 .site-rail__editorial button{appearance:none;border:0;border-bottom:1px solid var(--n-300);background:transparent;padding:0 0 3px;color:var(--n-600);font:400 12px/1.4 var(--sans);cursor:pointer}
 .site-rail__editorial button:hover,.site-rail__editorial button[aria-pressed="true"]{color:var(--c-600);border-color:var(--c-600)}
-.site-rail__utilities{display:flex;justify-content:space-between;gap:20px;align-items:center;color:var(--n-500);font:400 10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.site-rail__utilities{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;color:var(--n-500);font:400 10px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.site-rail__utilities>span{text-align:center}
 .site-rail__utilities a{color:var(--c-600);text-decoration:none;white-space:nowrap}
+.site-languages{display:flex;gap:8px}.site-languages a{color:var(--n-500)}.site-languages a[aria-current="page"]{color:var(--c-600);text-decoration:underline;text-underline-offset:4px}
 
 .product-stage{position:relative;min-width:0;height:100svh;min-height:640px;padding:32px clamp(28px,4vw,62px);display:flex;flex-direction:column;overflow:hidden;background:var(--n-0)}
 .product-stage__top{position:relative;z-index:5;display:flex;justify-content:space-between;gap:20px;padding-bottom:17px;border-bottom:var(--border);font:400 9px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--n-500)}
@@ -103,7 +105,7 @@ button{font:inherit}
 }
 
 @media(max-width:420px){
-  .site-rail{min-height:610px}.site-rail__statement h1{font-size:46px}.site-rail__utilities{align-items:flex-end}.site-rail__utilities span{max-width:120px}
+  .site-rail{min-height:610px}.site-rail__statement h1{font-size:46px}.site-rail__utilities{grid-template-columns:auto auto;justify-content:space-between;align-items:end}.site-rail__utilities>span{display:none}
   .product-stage{min-height:650px}.product-stage--selected{min-height:650px}.product-stage__top span:last-child{text-align:right}
   .product-stage__heading{gap:12px}.product-stage__heading h2{font-size:38px}
   .mobile-product-selector__item{min-height:54px;padding:7px}.mobile-product-selector__item small{display:none}
