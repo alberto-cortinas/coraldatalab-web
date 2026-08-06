@@ -54,7 +54,7 @@ function SiteRail() {
   )
 }
 
-function ElementCell({ element, selectedName, onSelect, compact = false }) {
+function ElementCell({ element, selectedName, onSelect }) {
   const [number, symbol, column, row, productName] = element
   const style = { gridColumn: column, gridRow: row }
 
@@ -76,7 +76,6 @@ function ElementCell({ element, selectedName, onSelect, compact = false }) {
       aria-label={`Mostrar ${productName}`}
       aria-pressed={selectedName === productName}
       onClick={() => onSelect(productName)}
-      tabIndex={compact ? -1 : 0}
     >
       <span>{number}</span>
       <strong>{symbol}</strong>
@@ -86,8 +85,6 @@ function ElementCell({ element, selectedName, onSelect, compact = false }) {
 }
 
 function PeriodicTable({ selectedName, onSelect }) {
-  const compact = Boolean(selectedName)
-
   return (
     <div className="periodic-system" aria-label="Sistema periódico de productos">
       <div className="periodic-system__group-axis" aria-hidden="true">
@@ -104,7 +101,6 @@ function PeriodicTable({ selectedName, onSelect }) {
               element={element}
               selectedName={selectedName}
               onSelect={onSelect}
-              compact={compact}
             />
           ))}
         </div>
@@ -117,7 +113,6 @@ function PeriodicTable({ selectedName, onSelect }) {
                 element={element}
                 selectedName={selectedName}
                 onSelect={onSelect}
-                compact={compact}
               />
             ))}
           </div>
@@ -179,18 +174,20 @@ function ProductSystem() {
         </button>
       </div>
 
-      <div className="product-stage__table">
-        <div className="product-stage__heading">
-          <h2>Elige un elemento.</h2>
-          <p>Una tabla.<br />Tres productos.</p>
+      {!selectedName && (
+        <div className="product-stage__table">
+          <div className="product-stage__heading">
+            <h2>Queremos que nos conozcas a través de nuestros productos.</h2>
+            <p>Explora<br />Ne · Mo · Ta</p>
+          </div>
+          <PeriodicTable selectedName={selectedName} onSelect={setSelectedName} />
+          <div className="product-stage__legend" aria-hidden="true">
+            <span><i />Contexto</span>
+            <span><i />Producto</span>
+          </div>
+          <MobileProductSelector selectedName={selectedName} onSelect={setSelectedName} />
         </div>
-        <PeriodicTable selectedName={selectedName} onSelect={setSelectedName} />
-        <div className="product-stage__legend" aria-hidden="true">
-          <span><i />Contexto</span>
-          <span><i />Producto</span>
-        </div>
-        <MobileProductSelector selectedName={selectedName} onSelect={setSelectedName} />
-      </div>
+      )}
 
       {selectedName && <ProductDetail name={selectedName} />}
     </main>

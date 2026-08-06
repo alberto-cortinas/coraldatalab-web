@@ -46,7 +46,7 @@ En escritorio el plano de tesis permanece fijo mientras los capítulos se despla
 
 Tesis persistente a la izquierda. El plano derecho funciona como un sistema periódico de productos sin preselección inicial ni recorrido vertical. La retícula respeta los 18 grupos, los siete periodos y el bloque `f`; todas las celdas son cuadradas y los productos ocupan las posiciones químicas de sus símbolos: NeuralGraph (`Ne`), Mostra (`Mo`) y Talos (`Ta`).
 
-Al seleccionar un producto, la tabla completa se reduce y pasa a segundo plano sin desaparecer. El detalle aparece en la misma escena y ofrece acceso a la página extensa cuando existe. Los elementos químicos de contexto usan un relleno gris apenas perceptible; las tres celdas de producto concentran el color y la interacción.
+Al seleccionar un producto, la tabla cede por completo la escena y desaparece. El detalle aparece en el mismo plano, sin convivir con una miniatura redundante, y ofrece acceso a la página extensa cuando existe. “Volver al sistema” recupera el índice. Los elementos químicos de contexto usan un relleno gris apenas perceptible; las tres celdas de producto concentran el color y la interacción.
 
 ### Producto
 
