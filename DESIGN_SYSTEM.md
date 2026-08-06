@@ -44,7 +44,7 @@ En escritorio el plano de tesis permanece fijo mientras los capítulos se despla
 
 ### Portada
 
-Tesis persistente a la izquierda. La primera pantalla del plano derecho es un índice editorial: presenta el sistema completo, destaca un producto y permite acceder a los tres capítulos. Solo después comienzan NeuralGraph, Mostra y Talos como escenas detalladas. Principios y método continúan como contenido editorial sin numeración. Contacto cierra el recorrido, pero no forma parte del índice de productos.
+Tesis persistente a la izquierda. La primera pantalla del plano derecho es un índice editorial neutral: presenta el sistema completo sin preseleccionar ningún producto e invita a elegir uno de los tres capítulos. Solo después comienzan NeuralGraph, Mostra y Talos como escenas detalladas. Principios y método continúan como contenido editorial sin numeración. Contacto cierra el recorrido, pero no forma parte del índice de productos.
 
 ### Producto
 

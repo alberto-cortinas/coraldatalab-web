@@ -4,6 +4,7 @@ import {
   currentLanguage,
   languageLabels,
   languagePaths,
+  neuralGraphCopy,
   privacyPaths,
 } from './neuralgraph-i18n.js'
 import { privacyCopy } from './privacy-i18n.js'
@@ -11,11 +12,15 @@ import { privacyCopy } from './privacy-i18n.js'
 export function PrivacyPage() {
   const language = currentLanguage()
   const copy = privacyCopy[language]
+  const homeLabel = neuralGraphCopy[language].homeLink
 
   return (
     <main className="privacy-layout">
       <aside className="privacy-rail">
-        <Brand href="/" />
+        <div className="privacy-rail__top">
+          <Brand href="/" />
+          <a href="/">← {homeLabel}</a>
+        </div>
         <div className="privacy-rail__title">
           <p className="privacy-label">{copy.label}</p>
           <h1>{copy.title}</h1>

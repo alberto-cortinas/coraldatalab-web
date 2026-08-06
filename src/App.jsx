@@ -34,25 +34,22 @@ function SiteRail() {
 }
 
 function ProductIndex() {
-  const featuredProduct = products[0]
-
   return (
     <section className="product-index-panel" aria-label="Índice de productos">
       <div className="product-index-panel__top">
-        <span>01 / 03 · Productos</span>
-        <a href="#neuralgraph">Siguiente producto ↓</a>
+        <span>03 productos · Un sistema</span>
+        <span>Selecciona un producto ↓</span>
       </div>
-      <div className="product-index-panel__feature">
-        <span>01</span>
+      <div className="product-index-panel__feature product-index-panel__feature--neutral">
         <div>
-          <p>{featuredProduct.verb} · Research preview</p>
-          <h2 aria-label="NeuralGraph">Neural<br />Graph</h2>
-          <p>Infraestructura para RAG en producción y graph intelligence. Evidencia verificable para agentes de IA.</p>
+          <p>Productos AI-native</p>
+          <h2>Queremos que nos conozcas a través de nuestro trabajo.</h2>
+          <p>Selecciona uno de los productos para descubrir el problema que aborda, cómo lo estamos construyendo y en qué estado se encuentra.</p>
         </div>
       </div>
       <nav className="product-index-list" aria-label="Productos">
         {products.map((product, index) => (
-          <a key={product.name} href={`#${product.name.toLowerCase()}`} className={index === 0 ? 'is-active' : undefined}>
+          <a key={product.name} href={`#${product.name.toLowerCase()}`}>
             <span>{String(index + 1).padStart(2, '0')}</span>
             <strong>{product.name}</strong>
             <small>Producto</small>

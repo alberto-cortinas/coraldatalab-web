@@ -19,7 +19,7 @@ export function currentLanguage() {
 
 export const neuralGraphCopy = {
   es: {
-    skip: 'Saltar al contenido', contact: 'Contacto', languageNav: 'Cambiar idioma',
+    skip: 'Saltar al contenido', contact: 'Contacto', homeLink: 'Inicio', languageNav: 'Cambiar idioma',
     status: 'Investigación en curso · Buscamos socios de diseño',
     heroTitle: ['Inteligencia Artificial', 'en el ADN del producto.'],
     heroLead: 'Diseñamos el modelo, los datos y la experiencia como un único sistema desde el origen. No añadimos IA como una capa sobre software heredado.',
@@ -41,7 +41,7 @@ export const neuralGraphCopy = {
     thanksBody: 'Tu respuesta nos ayudará a priorizar problemas reales de infraestructura RAG.', thanksBack: 'Volver a NeuralGraph',
   },
   ca: {
-    skip: 'Saltar al contingut', contact: 'Contacte', languageNav: 'Canviar idioma',
+    skip: 'Saltar al contingut', contact: 'Contacte', homeLink: 'Inici', languageNav: 'Canviar idioma',
     status: 'Recerca en curs · Busquem socis de disseny',
     heroTitle: ['Intel·ligència Artificial', 'en l’ADN del producte.'],
     heroLead: 'Dissenyem el model, les dades i l’experiència com un únic sistema des de l’origen. No afegim IA com una capa sobre programari heretat.',
@@ -63,7 +63,7 @@ export const neuralGraphCopy = {
     thanksBody: 'La teva resposta ens ajudarà a prioritzar problemes reals d’infraestructura RAG.', thanksBack: 'Tornar a NeuralGraph',
   },
   en: {
-    skip: 'Skip to content', contact: 'Contact', languageNav: 'Change language',
+    skip: 'Skip to content', contact: 'Contact', homeLink: 'Home', languageNav: 'Change language',
     status: 'Research preview · Seeking design partners',
     heroTitle: ['Artificial Intelligence', 'in the product’s DNA.'],
     heroLead: 'We design the model, data and experience as a single system from the start. We do not add AI as a layer on top of legacy software.',
