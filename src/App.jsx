@@ -177,14 +177,10 @@ function ProductSystem() {
       {!selectedName && (
         <div className="product-stage__table">
           <div className="product-stage__heading">
-            <h2>Queremos que nos conozcas a través de nuestros productos.</h2>
-            <p>Explora<br />Ne · Mo · Ta</p>
+            <h2>Conócenos por lo que construimos.</h2>
+            <p>Tres productos para tres problemas concretos. Selecciona un elemento y descubre cómo los abordamos.</p>
           </div>
           <PeriodicTable selectedName={selectedName} onSelect={setSelectedName} />
-          <div className="product-stage__legend" aria-hidden="true">
-            <span><i />Contexto</span>
-            <span><i />Producto</span>
-          </div>
           <MobileProductSelector selectedName={selectedName} onSelect={setSelectedName} />
         </div>
       )}
