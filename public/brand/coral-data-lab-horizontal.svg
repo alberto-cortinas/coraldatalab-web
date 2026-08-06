@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" role="img" aria-labelledby="title desc">
+  <title id="title">Coral Data Lab</title>
+  <desc id="desc">Marca horizontal de Coral Data Lab.</desc>
+  <style>
+    @font-face {
+      font-family: "Inter CDL";
+      font-style: normal;
+      font-weight: 600;
+      src: url("../fonts/inter-600.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "Inter CDL";
+      font-style: normal;
+      font-weight: 700;
+      src: url("../fonts/inter-700.ttf") format("truetype");
+    }
+  </style>
+  <rect width="1600" height="400" fill="#FFFFFF"/>
+  <circle cx="205" cy="200" r="92" fill="#D8432B"/>
+  <circle cx="231" cy="174" r="28" fill="#FFFFFF"/>
+  <text x="360" y="236" font-family="'Inter CDL', Inter, 'Helvetica Neue', Arial, sans-serif" font-size="104" letter-spacing="5">
+    <tspan fill="#D8432B" font-weight="700">CORAL</tspan><tspan fill="#15181C" font-weight="600">DATALAB</tspan>
+  </text>
+</svg>

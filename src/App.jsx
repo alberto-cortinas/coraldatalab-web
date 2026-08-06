@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ArrowUpRight } from 'lucide-react'
 import { Brand } from './components/Brand.jsx'
-import { products } from './content.js'
+import { methodSteps, principles, products } from './content.js'
 import { fBlockElements, mainElements } from './periodic-elements.js'
 
 const contactHref =
@@ -33,7 +33,7 @@ const productMeta = {
 
 const productByName = Object.fromEntries(products.map((product) => [product.name, product]))
 
-function SiteRail() {
+function SiteRail({ activeView, onSelectView }) {
   return (
     <aside className="site-rail">
       <Brand />
@@ -46,6 +46,22 @@ function SiteRail() {
           el origen. No añadimos IA como una capa sobre software heredado.
         </p>
       </div>
+      <nav className="site-rail__editorial" aria-label="Contenido editorial">
+        <button
+          type="button"
+          aria-pressed={activeView === 'principles'}
+          onClick={() => onSelectView('principles')}
+        >
+          Principios →
+        </button>
+        <button
+          type="button"
+          aria-pressed={activeView === 'method'}
+          onClick={() => onSelectView('method')}
+        >
+          Cómo trabajamos →
+        </button>
+      </nav>
       <div className="site-rail__utilities">
         <span>Barcelona · Remoto</span>
         <a href={contactHref}>Hablemos →</a>
@@ -162,41 +178,83 @@ function ProductDetail({ name }) {
   )
 }
 
-function ProductSystem() {
-  const [selectedName, setSelectedName] = useState(null)
+function EditorialDetail({ view }) {
+  const isPrinciples = view === 'principles'
+  const items = isPrinciples
+    ? principles.map(({ title, description }) => [title, description])
+    : methodSteps
 
   return (
-    <main className={`product-stage${selectedName ? ' product-stage--selected' : ''}`} id="productos">
+    <article className="editorial-detail">
+      <p className="editorial-detail__meta">
+        {isPrinciples ? 'Principios · Coral Data Lab' : 'Del problema al producto'}
+      </p>
+      <h2>{isPrinciples ? 'Lo que creemos define lo que construimos.' : 'Avanzamos solo cuando hay evidencia.'}</h2>
+      <p className="editorial-detail__lead">
+        {isPrinciples
+          ? 'Decisiones de producto y tecnología, no promesas corporativas.'
+          : 'Cada etapa termina en algo visible y en una decisión clara.'}
+      </p>
+      <ol>
+        {items.map(([title, description], index) => (
+          <li key={title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <div><h3>{title}</h3><p>{description}</p></div>
+          </li>
+        ))}
+      </ol>
+    </article>
+  )
+}
+
+function ProductSystem({ activeView, onSelectView }) {
+  const selectedName = productByName[activeView] ? activeView : null
+  const editorialView = activeView === 'principles' || activeView === 'method' ? activeView : null
+  const hasSelection = Boolean(activeView)
+
+  const status = selectedName
+    ? `Producto seleccionado · ${productMeta[selectedName].symbol}`
+    : editorialView === 'principles'
+      ? 'Principios · Coral Data Lab'
+      : editorialView === 'method'
+        ? 'Cómo trabajamos · Coral Data Lab'
+        : 'Sistema de productos'
+
+  return (
+    <main className={`product-stage${hasSelection ? ' product-stage--selected' : ''}`} id="productos">
       <div className="product-stage__top">
-        <span>{selectedName ? `Producto seleccionado · ${productMeta[selectedName].symbol}` : 'Sistema de productos'}</span>
-        <button type="button" onClick={() => setSelectedName(null)}>
+        <span>{status}</span>
+        <button type="button" onClick={() => onSelectView(null)}>
           ← Volver al sistema
         </button>
       </div>
 
-      {!selectedName && (
+      {!hasSelection && (
         <div className="product-stage__table">
           <div className="product-stage__heading">
             <h2>Conócenos por lo que construimos.</h2>
             <p>Tres productos para tres problemas concretos. Selecciona un elemento y descubre cómo los abordamos.</p>
           </div>
-          <PeriodicTable selectedName={selectedName} onSelect={setSelectedName} />
-          <MobileProductSelector selectedName={selectedName} onSelect={setSelectedName} />
+          <PeriodicTable selectedName={selectedName} onSelect={onSelectView} />
+          <MobileProductSelector selectedName={selectedName} onSelect={onSelectView} />
         </div>
       )}
 
       {selectedName && <ProductDetail name={selectedName} />}
+      {editorialView && <EditorialDetail view={editorialView} />}
     </main>
   )
 }
 
 export default function App() {
+  const [activeView, setActiveView] = useState(null)
+
   return (
     <>
       <a className="skip" href="#productos">Saltar a los productos</a>
       <div className="site-layout" id="inicio">
-        <SiteRail />
-        <ProductSystem />
+        <SiteRail activeView={activeView} onSelectView={setActiveView} />
+        <ProductSystem activeView={activeView} onSelectView={setActiveView} />
       </div>
     </>
   )

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Coral Data Lab</title>
+  <desc id="desc">Símbolo circular coral con un círculo blanco desplazado hacia la parte superior derecha.</desc>
+  <rect width="800" height="800" fill="#FFFFFF"/>
+  <circle cx="400" cy="400" r="268" fill="#D8432B"/>
+  <circle cx="476" cy="324" r="82" fill="#FFFFFF"/>
+</svg>

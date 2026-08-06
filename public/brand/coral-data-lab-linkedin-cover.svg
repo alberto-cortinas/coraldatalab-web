@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Coral Data Lab</title>
+  <desc id="desc">Portada de LinkedIn de Coral Data Lab.</desc>
+  <style>
+    @font-face {
+      font-family: "Inter CDL";
+      font-style: normal;
+      font-weight: 500;
+      src: url("../fonts/inter-500.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "Inter CDL";
+      font-style: normal;
+      font-weight: 600;
+      src: url("../fonts/inter-600.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "Inter CDL";
+      font-style: normal;
+      font-weight: 700;
+      src: url("../fonts/inter-700.ttf") format("truetype");
+    }
+  </style>
+  <rect width="4200" height="700" fill="#F3EFE8"/>
+  <circle cx="2100" cy="244" r="128" fill="#D8432B"/>
+  <circle cx="2136" cy="208" r="39" fill="#F3EFE8"/>
+  <text x="2100" y="466" text-anchor="middle" font-family="'Inter CDL', Inter, 'Helvetica Neue', Arial, sans-serif" font-size="104" letter-spacing="6">
+    <tspan fill="#D8432B" font-weight="700">CORAL</tspan><tspan fill="#15181C" font-weight="600">DATALAB</tspan>
+  </text>
+  <text x="2100" y="554" text-anchor="middle" fill="#626A73" font-family="'Inter CDL', Inter, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" letter-spacing="4">AI-NATIVE PRODUCTS FOR KNOWLEDGE &amp; OPERATIONAL SYSTEMS</text>
+</svg>
