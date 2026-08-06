@@ -48,7 +48,7 @@ Tesis persistente a la izquierda. La primera pantalla del plano derecho es un í
 
 ### Producto
 
-Promesa, estado, CTA e idiomas en el plano fijo. Problema, capacidades, audiencia, estado y CTA final se desarrollan como paneles en el plano de lectura.
+La página de producto puede resolverse como una única composición sin scroll: identidad, estado, CTA e idiomas en el plano izquierdo; problema, propuesta del producto y futura evidencia cuantitativa en el plano derecho. El mensaje debe pertenecer al producto concreto, nunca repetir la tesis corporativa de Coral Data Lab.
 
 ### Artículo o nota futura
 
