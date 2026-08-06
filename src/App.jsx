@@ -33,6 +33,40 @@ function SiteRail() {
   )
 }
 
+function ProductIndex() {
+  const featuredProduct = products[0]
+
+  return (
+    <section className="product-index-panel" aria-label="Índice de productos">
+      <div className="product-index-panel__top">
+        <span>01 / 03 · Productos</span>
+        <a href="#neuralgraph">Siguiente producto ↓</a>
+      </div>
+      <div className="product-index-panel__feature">
+        <span>01</span>
+        <div>
+          <p>{featuredProduct.verb} · Research preview</p>
+          <h2 aria-label="NeuralGraph">Neural<br />Graph</h2>
+          <p>Infraestructura para RAG en producción y graph intelligence. Evidencia verificable para agentes de IA.</p>
+        </div>
+      </div>
+      <nav className="product-index-list" aria-label="Productos">
+        {products.map((product, index) => (
+          <a key={product.name} href={`#${product.name.toLowerCase()}`} className={index === 0 ? 'is-active' : undefined}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <strong>{product.name}</strong>
+            <small>Producto</small>
+          </a>
+        ))}
+      </nav>
+      <div className="product-index-panel__editorial">
+        <a href="#principios">Principios →</a>
+        <span aria-disabled="true">Notas del laboratorio →</span>
+      </div>
+    </section>
+  )
+}
+
 function Principles() {
   return (
     <section className="editorial-panel" id="principios">
@@ -102,6 +136,7 @@ export default function App() {
       <div className="site-layout" id="inicio">
         <SiteRail />
         <main className="site-stream" id="productos">
+          <ProductIndex />
           {products.map((product, index) => (
             <ProductCard key={product.name} product={product} index={index} />
           ))}
