@@ -46,25 +46,27 @@ function SiteRail({ activeView, onSelectView }) {
           el origen. No añadimos IA como una capa sobre software heredado.
         </p>
       </div>
-      <nav className="site-rail__editorial" aria-label="Contenido editorial">
-        <button
-          type="button"
-          aria-pressed={activeView === 'principles'}
-          onClick={() => onSelectView('principles')}
-        >
-          Principios →
-        </button>
-        <button
-          type="button"
-          aria-pressed={activeView === 'method'}
-          onClick={() => onSelectView('method')}
-        >
-          Cómo trabajamos →
-        </button>
-      </nav>
-      <div className="site-rail__utilities">
-        <span>Barcelona · Remoto</span>
-        <a href={contactHref}>Hablemos →</a>
+      <div className="site-rail__bottom">
+        <nav className="site-rail__editorial" aria-label="Contenido editorial">
+          <button
+            type="button"
+            aria-pressed={activeView === 'principles'}
+            onClick={() => onSelectView('principles')}
+          >
+            Principios →
+          </button>
+          <button
+            type="button"
+            aria-pressed={activeView === 'method'}
+            onClick={() => onSelectView('method')}
+          >
+            Cómo trabajamos →
+          </button>
+        </nav>
+        <div className="site-rail__utilities">
+          <span>Barcelona · Remoto</span>
+          <a href={contactHref}>Hablemos →</a>
+        </div>
       </div>
     </aside>
   )
