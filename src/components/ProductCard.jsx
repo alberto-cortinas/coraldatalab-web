@@ -1,37 +1,36 @@
-import { Check, Network, PanelsTopLeft, Route } from 'lucide-react'
+import { ArrowUpRight, Check } from 'lucide-react'
 import { numberLabel } from '../content.js'
 
-const productIcons = {
-  routes: Route,
-  graph: Network,
-  story: PanelsTopLeft,
+const productLinks = {
+  NeuralGraph: '/neuralgraph/',
 }
 
 export function ProductCard({ product, index }) {
-  const ProductIcon = productIcons[product.motif]
+  const productHref = productLinks[product.name]
 
   return (
-    <article className={`product product--${product.motif}`}>
-      <div className="product__top">
-        <span className="product__index">{numberLabel(index)}</span>
-        <span className="product__icon" aria-hidden="true"><ProductIcon /></span>
+    <section className={`product-chapter product-chapter--${product.motif}`} id={product.name.toLowerCase()}>
+      <span className="product-chapter__ghost" aria-hidden="true">{numberLabel(index)}</span>
+      <div className="product-chapter__meta">
+        <span>{numberLabel(index)} / 03 · Producto</span>
+        <span>{product.status}</span>
       </div>
-      <div className="product__title">
-        <p className="product__verb">{product.verb}</p>
-        <h3>{product.name}</h3>
-        <span className="status">
-          <i aria-hidden="true" /> {product.status}
-        </span>
-      </div>
-      <div className="product__body">
-        <h4>{product.title}</h4>
+      <div className="product-chapter__body">
+        <p className="product-chapter__verb">{product.verb}</p>
+        <h2>{product.name}</h2>
+        <h3>{product.title}</h3>
         <p>{product.description}</p>
-        <ul className="feature-list">
-          {product.features.map((feature) => (
-            <li key={feature}><Check aria-hidden="true" />{feature}</li>
-          ))}
-        </ul>
+        {productHref && (
+          <a className="product-chapter__link" href={productHref}>
+            Explorar {product.name} <ArrowUpRight aria-hidden="true" />
+          </a>
+        )}
       </div>
-    </article>
+      <ul className="product-chapter__features">
+        {product.features.map((feature) => (
+          <li key={feature}><Check aria-hidden="true" />{feature}</li>
+        ))}
+      </ul>
+    </section>
   )
 }
