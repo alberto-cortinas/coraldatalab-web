@@ -105,12 +105,6 @@ function ElementCell({ element, selectedName, onSelect }) {
 function PeriodicTable({ selectedName, onSelect }) {
   return (
     <div className="periodic-system" aria-label="Sistema periódico de productos">
-      <div className="periodic-system__group-axis" aria-hidden="true">
-        {Array.from({ length: 18 }, (_, index) => <span key={index}>{index + 1}</span>)}
-      </div>
-      <div className="periodic-system__period-axis" aria-hidden="true">
-        {Array.from({ length: 7 }, (_, index) => <span key={index}>{index + 1}</span>)}
-      </div>
       <div className="periodic-system__body">
         <div className="periodic-system__main">
           {mainElements.map((element) => (
