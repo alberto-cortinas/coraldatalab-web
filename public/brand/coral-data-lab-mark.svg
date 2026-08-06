@@ -1,7 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
   <title id="title">Coral Data Lab</title>
-  <desc id="desc">Símbolo circular coral con un círculo blanco desplazado.</desc>
-  <rect width="400" height="400" fill="#FFFFFF"/>
-  <circle cx="200" cy="200" r="134" fill="#D8432B"/>
-  <circle cx="238" cy="162" r="41" fill="#FFFFFF"/>
+  <desc id="desc">Símbolo circular coral con un círculo transparente desplazado.</desc>
+  <mask id="cutout">
+    <rect width="400" height="400" fill="#FFFFFF"/>
+    <circle cx="238" cy="162" r="41" fill="#000000"/>
+  </mask>
+  <circle cx="200" cy="200" r="134" fill="#D8432B" mask="url(#cutout)"/>
 </svg>
